@@ -1,26 +1,29 @@
-name: Angular CI
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [ master ]  # Atau cabang yang Anda gunakan
 
 jobs:
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [21.x]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: ng build --configuration production
-    - run: npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+        node-version: '21.2.0'  # Atau versi Node.js yang Anda gunakan
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build
+      run: npm run build-prod
+
+    - name: Deploy
+      run: npm run deploy
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BASE_HREF: /kucing-angular/
