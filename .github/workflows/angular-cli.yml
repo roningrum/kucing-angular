@@ -14,7 +14,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '21.2.0'  # Atau versi Node.js yang Anda gunakan
+        node-version: '18'  # Atau versi Node.js yang Anda gunakan
 
     - name: Install Dependencies
       run: npm install
