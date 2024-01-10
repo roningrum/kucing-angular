@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-prod": "ng build --configuration production",
-    "deploy": "ng deploy kucing-angular",
-    "serve:ssr:kucing-angular": "node dist/kucing-angular/server/server.mjs"
+    "deploy": "ng deploy --base-href "/kucing-angular/"",
+    "serve:ssr:kucing-angular": "node distn/kucing-angular/server/server.mjs"
   },
   "private": true,
   "dependencies": {
